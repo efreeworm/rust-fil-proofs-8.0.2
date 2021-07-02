@@ -175,23 +175,19 @@ fn core_groups(cores_per_unit: usize) -> Option<Vec<Mutex<Vec<CoreIndex>>>> {
     //         core_count, cache_count, group_size
     //     );
     // }
-    
+
     debug!(
-
-        // 3970 是设置 cores_per_unit = 4 ， 就是3+1个线程跑1个任务； 32 / 4 = 8 
-        // 把group_size 设置为2 ， cache_count 设置为 16
-
-        // Cores: 32, Shared Caches: 8, cores per cache (group_size): 4
-        "Cores: {}, Shared Caches: {}, cores per cache (group_size): {}",
+        "Cores: {}, Shared Caches: {}, cores per cache (num_group_size): {}",
         core_count, cache_count, num_group_size
     );
 
+    
 
-    let core_groups = (0..group_count)
+    let core_groups = (0..num_group_count)
         .map(|i| {
-            (0..group_size)
+            (0..num_group_size)
                 .map(|j| {
-                    let core_index = i * group_size + j;
+                    let core_index = i * num_group_size + j;
                     assert!(core_index < core_count);
                     CoreIndex(core_index)
                 })

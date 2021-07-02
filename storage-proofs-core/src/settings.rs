@@ -52,16 +52,12 @@ impl Default for Settings {
             // The name is retained for backwards compatibility.
             parameter_cache: "/var/tmp/filecoin-proof-parameters/".to_string(),
             parent_cache: cache("filecoin-parents"),
-            //use_multicore_sdr: false,
-            use_multicore_sdr: true,
-            //multicore_sdr_producers: 3,
-            multicore_sdr_producers: 1,
+            use_multicore_sdr: false,
+            multicore_sdr_producers: 3,
             multicore_sdr_producer_stride: 128,
             multicore_sdr_lookahead: 800,
-            // multicore_group_size: 4,
-            // multicore_group_count: 8,
-            multicore_group_size: 2,
-            multicore_group_count: 16,
+            multicore_group_size: 4,
+            multicore_group_count: 8,
         }
     }
 }
